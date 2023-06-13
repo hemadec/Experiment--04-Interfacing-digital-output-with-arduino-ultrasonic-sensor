@@ -55,67 +55,42 @@ speed of sound in the air at 20ºC (68ºF) = 343m/s
 
 
 ### PROGRAM 
-
+```
 #define echoPin 9
 #define trigPin 10
-
 long duration;
 int distance;
-
-void setup() {
-  pinMode(trigPin, OUTPUT);
-  pinMode(echoPin, INPUT);
+void setup()
+{
+  pinMode(trigPin,OUTPUT);
+  pinMode(echoPin,INPUT);
   Serial.begin(9600);
 }
-void loop() {
-  digitalWrite(trigPin, LOW);
+void loop()
+{
+  digitalWrite(trigPin,LOW);
   delayMicroseconds(2);
-  digitalWrite(trigPin, HIGH);
+  digitalWrite(trigPin,HIGH);
   delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);
-  duration = pulseIn(echoPin, HIGH);
-  distance = duration * 0.034 / 2;
-  Serial.print("Distance;");
+  digitalWrite(trigPin,LOW);
+  duration=pulseIn(echoPin,HIGH);
+  distance=duration*0.034/2;
+  Serial.print("Distance: ");
   Serial.print(distance);
   Serial.println(" cm");
 }
 
+```
+### OUTPUT:
+
+### before simulation:
+![OUT 1](https://github.com/hemadec/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/124191397/41941f97-a0b2-4896-91cb-80cf54b9f70e)
+
+### after simulation:
+![OUT 2](https://github.com/hemadec/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/124191397/3f6c3410-dda3-4691-a3f3-e89fce103277)
 
 
-### Distance vs measurement table 
-
-			
- 
-			
-			
-			
-
-#before simulation
-
-![Uploading Screenshot (9).png…]()
-
-
-#after simulation
-
-![Screenshot (8)](https://github.com/hemadec/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/124191397/d0e4531c-3a84-45f2-a3ac-0c026d183c33)
-
-			
-			
-			
-			
-			
-			Average error = sum/ number of readings 
- 
-
-
-
-
-
-
-
-
-### RESULTS
-
-
+### RESULTS:
+Interfacing digital output with arduino ultrasonic sensor was successfully created.
 
  
