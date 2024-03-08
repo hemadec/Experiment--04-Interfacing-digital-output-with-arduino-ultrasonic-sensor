@@ -1,13 +1,13 @@
 # EXPERIMENT-NO--04-Distance measurement using Ultrasonic sensor
- ###  DATE: 
+DATE: 8/3/24
+<br>NAME: Gokul
+<br>ROLL NO : 212221220013
+<br>DEPARTMENT: IT
 
-###  NAME: 
-###  ROLL NO :
-###  DEPARTMENT:
 ## AIM: 
 To interface an ultrasonic pair and measure the distance in centimeters , calculate the error
  
-### COMPONENTS REQUIRED:
+## COMPONENTS REQUIRED:
 1.	ultrasonic sensor module HC-SR04
 2.	1 KΩ resistor 
 3.	Arduino Uno 
@@ -15,7 +15,7 @@ To interface an ultrasonic pair and measure the distance in centimeters , calcul
 5.	Connecting wires 
 
 
-### THEORY: 
+## THEORY: 
 The HC-SR04 ultrasonic sensor uses SONAR to determine the distance of an object just like the bats do. It offers excellent non-contact range detection with high accuracy and stable readings in an easy-to-use package from 2 cm to 400 cm or 1” to 13 feet.
 
 The operation is not affected by sunlight or black material, although acoustically, soft materials like cloth can be difficult to detect. It comes complete with ultrasonic transmitter and receiver module.
@@ -38,14 +38,17 @@ The time between the transmission and reception of the signal allows us to calcu
 distance to an object = ((speed of sound in the air)*time)/2
 speed of sound in the air at 20ºC (68ºF) = 343m/s
 
-### FIGURE 01 CIRCUIT OF INTERFACING ULTRASONIC SENSOR 
+## FIGURE 01 CIRCUIT OF INTERFACING ULTRASONIC SENSOR 
 
 
-![image](https://user-images.githubusercontent.com/36288975/166430594-5adb4ca9-5a42-4781-a7e6-7236b3766a85.png)
+![image](https://user-images.githubusercontent.com/36288975/166430594-5adb4ca9-5a42-4781-a7e6-7236b3766a85.png)<br>
+
+![image](https://github.com/vasanthkumarch/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/103019882/f10fc1dc-2ea6-4c4f-843b-dbdfde54b31d)
 
 
 
-### PROCEDURE:
+
+## PROCEDURE:
 1.	Connect the circuit as per the circuit diagram 
 2.	Connect the board to your computer via the USB cable.
 3.	If needed, install the drivers.
@@ -58,7 +61,50 @@ speed of sound in the air at 20ºC (68ºF) = 343m/s
 10.	Plot the graph for the output voltage vs the resistance 
 
 
-### PROGRAM 
+### PROGRAM :
+```
+int echopin=6;
+int trigpin=7;
+int red=8;
+int green=9;
+long duration;
+float distance;
+void setup()
+{
+  pinMode(echopin,INPUT);
+  pinMode(trigpin,OUTPUT);
+  pinMode(red,OUTPUT);
+  pinMode(green,OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  digitalWrite(trigpin,LOW);
+  delay(10);
+  digitalWrite(trigpin,HIGH);
+  delay(10);
+  digitalWrite(trigpin,LOW);
+  duration=pulseIn(echopin,HIGH);
+  distance=duration*0.034/2;  //0.034=velocity of sound
+  Serial.print("distance=");
+  Serial.print(distance);
+  Serial.println("cms");
+  if(distance>50)
+  {
+    digitalWrite(green,HIGH);
+    delay(500);
+    digitalWrite(green,LOW);
+    delay(500);
+  }
+  else
+  {
+    digitalWrite(red,HIGH);
+    delay(500);
+    digitalWrite(red,LOW);
+    delay(500);
+  }
+}
 ```
 
 
@@ -66,39 +112,19 @@ speed of sound in the air at 20ºC (68ºF) = 343m/s
 
 
 
+## Distance vs measurement table: 
+![image](https://github.com/vasanthkumarch/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/103019882/0fbdaff4-6501-4e9e-a414-fd67c8a38067)
+<br>
+![image](https://github.com/vasanthkumarch/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/103019882/da60cd51-746a-45b2-a5ad-c0f234e7ae87)
+Average error = sum/ number of readings 
 
+### Above 50cm:
+![image](https://github.com/vasanthkumarch/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/103019882/fa0d0100-73d6-4ddd-b022-8c634e265187)
+### Below 50cm:
+![image](https://github.com/vasanthkumarch/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/103019882/34d8a4bc-a797-45dc-850e-5386596d491d)
 
-
-
-`````````
-
-
-### Distance vs measurement table 
-
-			
- 
-			
-			
-			
-
-![image](https://user-images.githubusercontent.com/36288975/190135379-52ebacd5-ccd5-460f-a4cd-4d0ad1d9b179.png)
-
-			
-			
-			
-			
-			
-			Average error = sum/ number of readings 
- 
-
-
-
-
-
-
-
-
-### RESULTS
+## RESULTS:
+ Thus the distance measurement using ultrasonic sensor was successfully measured and verified.
 
 
 
