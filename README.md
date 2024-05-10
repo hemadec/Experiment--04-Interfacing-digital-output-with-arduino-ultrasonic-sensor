@@ -1,5 +1,5 @@
 # EXPERIMENT-NO--04-Distance measurement using Ultrasonic sensor
-DATE: 8/3/24
+DATE: 25/3/24
 <br>NAME: Gokul
 <br>ROLL NO : 212221220013
 <br>DEPARTMENT: IT
@@ -123,7 +123,7 @@ Average error = sum/ number of readings
 ### Below 50cm:
 ![image](https://github.com/vasanthkumarch/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/103019882/34d8a4bc-a797-45dc-850e-5386596d491d)
 
-## RESULTS:
+### RESULTS:
  Thus the distance measurement using ultrasonic sensor was successfully measured and verified.
 
 
