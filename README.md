@@ -1,5 +1,7 @@
 # EXPERIMENT-NO--04-Distance measurement using Ultrasonic sensor
-
+Name: Hemanathan <br>
+Dept: IT <br>
+Reg no: 212221220019 <br>
 ## AIM: 
 To interface an ultrasonic pair and measure the distance in centimeters , calculate the error
  
@@ -39,6 +41,9 @@ speed of sound in the air at 20ºC (68ºF) = 343m/s
 
 ![image](https://user-images.githubusercontent.com/36288975/166430594-5adb4ca9-5a42-4781-a7e6-7236b3766a85.png)
 
+### Schematic diagram:
+![image](https://github.com/hemadec/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/124191397/4237c685-5371-4196-b1c6-a2188ec1fa94)
+
 
 
 ### PROCEDURE:
@@ -56,38 +61,60 @@ speed of sound in the air at 20ºC (68ºF) = 343m/s
 
 ### PROGRAM 
 ```
-#define echoPin 9
-#define trigPin 10
+int echopin=6;
+int trigpin=7;
+int red=8;
+int green=9;
 long duration;
-int distance;
+float distance;
 void setup()
 {
-  pinMode(trigPin,OUTPUT);
-  pinMode(echoPin,INPUT);
+  pinMode(echopin,INPUT);
+  pinMode(trigpin,OUTPUT);
+  pinMode(red,OUTPUT);
+  pinMode(green,OUTPUT);
   Serial.begin(9600);
 }
+
 void loop()
 {
-  digitalWrite(trigPin,LOW);
-  delayMicroseconds(2);
-  digitalWrite(trigPin,HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPin,LOW);
-  duration=pulseIn(echoPin,HIGH);
-  distance=duration*0.034/2;
-  Serial.print("Distance: ");
+  digitalWrite(trigpin,LOW);
+  delay(10);
+  digitalWrite(trigpin,HIGH);
+  delay(10);
+  digitalWrite(trigpin,LOW);
+  duration=pulseIn(echopin,HIGH);
+  distance=duration*0.034/2;  //0.034=velocity of sound
+  Serial.print("distance=");
   Serial.print(distance);
-  Serial.println(" cm");
+  Serial.println("cms");
+  if(distance>50)
+  {
+    digitalWrite(green,HIGH);
+    delay(500);
+    digitalWrite(green,LOW);
+    delay(500);
+  }
+  else
+  {
+    digitalWrite(red,HIGH);
+    delay(500);
+    digitalWrite(red,LOW);
+    delay(500);
+  }
 }
 
 ```
-### OUTPUT:
+## Distance vs measurement table: 
+![image](https://github.com/vasanthkumarch/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/103019882/0fbdaff4-6501-4e9e-a414-fd67c8a38067)
+<br>
+![image](https://github.com/vasanthkumarch/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/103019882/da60cd51-746a-45b2-a5ad-c0f234e7ae87)
+Average error = sum/ number of readings 
 
-### before simulation:
-![OUT 1](https://github.com/hemadec/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/124191397/41941f97-a0b2-4896-91cb-80cf54b9f70e)
-
-### after simulation:
-![OUT 2](https://github.com/hemadec/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/124191397/3f6c3410-dda3-4691-a3f3-e89fce103277)
+### Above 50cm:
+![image](https://github.com/vasanthkumarch/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/103019882/fa0d0100-73d6-4ddd-b022-8c634e265187)
+### Below 50cm:
+![image](https://github.com/vasanthkumarch/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/103019882/34d8a4bc-a797-45dc-850e-5386596d491d)
 
 
 ### RESULTS:
